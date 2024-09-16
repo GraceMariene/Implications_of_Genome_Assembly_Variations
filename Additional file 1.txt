@@ -131,7 +131,7 @@ COMMANDS USED FOR DECONTAMINATION AND POLISHING ASSEMBLIES
 
 ## Mapping and decontamination of the preliminary long-read assemblies 
 
-minimap2 -ax map-ont \ ## use -ax map-pb for H.contortus 
+minimap2 -ax map-ont \ ## use -ax map-pb for H.contortus ## use -ax asm20 for H.bakeri
 [PATH/TO/ASSEMBLY] [PATH/TO/READS] > [UNIQUE_NAME].sam 
 
 # Sorting the alignments 
