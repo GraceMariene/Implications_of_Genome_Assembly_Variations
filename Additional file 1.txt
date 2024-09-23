@@ -1,7 +1,8 @@
 COMMANDS USED TO GENERATE GENOME ASSEMBLIES
  
-## Commands used, replace anything in square brackets [] with your appropriate path or unique name  
-## Commands to assemble preliminary long read assemblies 
+## Commands used to assemble preliminary long read assemblies
+## Replace anything in square brackets [] with your appropriate path or unique name  
+ 
 
 ## Preliminary assemblies for C.bovis and H.contortus
 
@@ -9,7 +10,7 @@ COMMANDS USED TO GENERATE GENOME ASSEMBLIES
 # For C.bovis:  
 canu -p [UNIQUE_NAME] -d [UNIQUE_NAME] genomeSize=62.7m useGrid=true gridOptions="--time=24:00:00" -nanopore [PATH/TO/READS] 
 # For H.contortus:  	
-canu -p [UNIQUE_NAME] -d [UNIQUE_NAME] genomeSize=283.4 m useGrid=true gridOptions="--time=24:00:00" -pacbio [PATH/TO/READS] 
+canu -p [UNIQUE_NAME] -d [UNIQUE_NAME] genomeSize=283.4m useGrid=true gridOptions="--time=24:00:00" -pacbio [PATH/TO/READS] 
  
 ## Flye: 
 # For C.bovis: 
@@ -57,7 +58,7 @@ seed_coverage = 40
 length_cutoff = -1 
 pa_HPCdaligner_option=-v -B128 -M24   
 pa_daligner_option= -k18 -e0.80 -l3000 -h256 -w8 -s100  
-falcon_sense_option=--output-multi --min-idt 0.70 --min-cov 4 --max-	     n-read 400  
+falcon_sense_option=--output-multi --min-idt 0.70 --min-cov 4 --max-	n-read 400  
 falcon_sense_greedy=False   
 ####Pread overlapping  
 ovlp_HPCdaligner_option=-v -B128 -M24 
@@ -131,7 +132,7 @@ COMMANDS USED FOR DECONTAMINATION AND POLISHING ASSEMBLIES
 
 ## Mapping and decontamination of the preliminary long-read assemblies 
 
-minimap2 -ax map-ont \ ## use -ax map-pb for H.contortus ## use -ax asm20 for H.bakeri
+minimap2 -ax map-ont ## for C. bovis / ## use -ax map-pb for H.contortus / ## use -ax asm20 for H.bakeri
 [PATH/TO/ASSEMBLY] [PATH/TO/READS] > [UNIQUE_NAME].sam 
 
 # Sorting the alignments 
@@ -166,7 +167,7 @@ blobtools create -i [PATH/TO/ASSEMBLY] -t [PATH/TO/DIAMOND_OUTPUT_FILE.tsv] \
 ## Mapping and polishing decontaminated assemblies 
 
 # Aligning the long reads to the filtered assembly using minimap2 and performing four rounds of racon. 
-minimap2 -ax map-ont \ ## use -ax map-pb for H.contortus 
+minimap2 -ax map-ont / ## use -ax map-pb for H.contortus 
 [PATH/TO/ASSEMBLY] [PATH/TO/READS] > [UNIQUE_NAME].sam 
  
 racon -m 8 -x -6 -g -8 -w 500 -t 16 [PATH/TO/READS] \ 
@@ -210,7 +211,7 @@ racon -m 8 -x -6 -g -8 -w 500 -t 24 \
 > [UNIQUE_NAME_FOR_RACON_ROUNDS].fasta 
  
 ## Repeat these steps two times with the output from the first round as input for the second round. After the second round then: 
-## Performe two iterations of pilon on the racon_round2.fasta assembly. 
+## Perform two iterations of pilon on the racon_round2.fasta assembly. 
  
 bwa index [PATH/TO/RACON_ROUND2.fasta]  
  
