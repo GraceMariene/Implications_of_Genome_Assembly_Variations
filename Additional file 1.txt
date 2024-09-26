@@ -1,6 +1,6 @@
 COMMANDS USED TO GENERATE GENOME ASSEMBLIES
  
-## Commands used to assemble preliminary long read assemblies
+## Commands used to assemble preliminary long-read assemblies
 ## Replace anything in square brackets [] with your appropriate path or unique name  
  
 
@@ -118,7 +118,7 @@ fc_unzip.py [UNIQUE_CONGIG_NAME].cfg
  
 ##Preliminary assemblies for H.bakeri 
 
-## Hicanu 
+## HiCanu 
 canu -assemble -p [UNIQUE_NAME]-d [UNIQUE_NAME] genomeSize=696.9m useGrid=true cnsMemory=64 batMemory=62 gridOptions="--time=7-00:00:00" -pacbio-hifi [PATH/TO/READS] 
  
 ## Hifiasm 
